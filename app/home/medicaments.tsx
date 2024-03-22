@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { router } from "expo-router";
 import { getDatabase, onValue, ref } from "firebase/database";
 import { FlatList, RefreshControl, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { appFirebase } from "@/firebaseConfig";
+import { Button } from "@/src/components/atoms/button";
 import { Text } from "@/src/components/atoms/text";
 import { ItemMedicament } from "@/src/components/molecules/itemMedicament";
 import { getGreeting } from "@/src/functions/getGreeting";
@@ -19,24 +21,33 @@ interface MedicamentProps {
 }
 
 const renderHeader = () => (
-  <Text type="heading" value="Meus remédios" style={{ marginTop: scaleSize(16) }} />
+  <Text type="heading" value="Remédios" style={{ marginTop: scaleSize(16) }} />
 );
 
 const renderItems = ({ item }: { item: MedicamentProps }) => (
   <View style={styles.itemList}>
     <View style={styles.vStack}>
-      <ItemMedicament icon="badgeInfo" label={"Porta"} value={item.id} />
-      <ItemMedicament icon="pill" label={"Remédio"} value={item.medicament} />
-      <ItemMedicament icon="calendar" label={"Última dose"} value={item.updateAt} />
-    </View>
-    <View>
-      <Text type="paragraph" value={"Quantidade"} textStyle={{ color: theme.colors.gray }} />
-      <Text type="title" value={item.amount} textStyle={{ fontSize: scaleSize(64) }} />
+      <View style={styles.hStack}>
+        <View style={styles.vStack}>
+          <ItemMedicament icon="badgeInfo" label={"Porta"} value={item.id} />
+          <ItemMedicament icon="pill" label={"Remédio"} value={item.medicament} />
+          <ItemMedicament icon="calendar" label={"Última dose"} value={item.updateAt} />
+        </View>
+
+        <View>
+          <Text type="paragraph" value={"Quantidade"} textStyle={{ color: theme.colors.gray }} />
+          <Text type="title" value={item.amount} textStyle={{ fontSize: scaleSize(64) }} />
+        </View>
+      </View>
+
+      <View>
+        <Button title={"Editar"} variant="warn" onPress={() => router.navigate("/home/modal")} />
+      </View>
     </View>
   </View>
 );
 
-export default function Home() {
+export default function Medicaments() {
   const { top } = useSafeAreaInsets();
 
   const { data, isLoading, isRefetching, isError, refetch } = useQuery({

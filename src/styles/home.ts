@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   itemList: {
     flexDirection: "row",
     backgroundColor: theme.colors.light,
-    borderRadius: scaleSize(8),
+    borderRadius: scaleSize(18),
     padding: scaleSize(16),
 
     shadowColor: theme.colors.dark,
@@ -34,5 +34,11 @@ export const styles = StyleSheet.create({
   vStack: {
     flex: 1,
     gap: scaleSize(16),
+    flexDirection: "column",
+  },
+  hStack: {
+    flex: 1,
+    gap: scaleSize(16),
+    flexDirection: "row",
   },
 });

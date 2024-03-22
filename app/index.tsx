@@ -27,7 +27,11 @@ export default function Onboarding() {
           textStyle={{ textAlign: "center", fontSize: scaleSize(16) }}
         />
 
-        <Button variant="primary" title="Iniciar" onPress={() => router.replace("/home")} />
+        <Button
+          variant="primary"
+          title="Iniciar"
+          onPress={() => router.replace("/home/medicaments")}
+        />
       </View>
     </View>
   );
