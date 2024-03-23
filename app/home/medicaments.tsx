@@ -35,13 +35,24 @@ const renderItems = ({ item }: { item: MedicamentProps }) => (
         </View>
 
         <View>
-          <Text type="paragraph" value={"Quantidade"} textStyle={{ color: theme.colors.gray }} />
+          <Text
+            type="paragraph"
+            value={"Quantidade"}
+            textStyle={{ color: theme.colors.gray.dark }}
+          />
           <Text type="title" value={item.amount} textStyle={{ fontSize: scaleSize(64) }} />
         </View>
       </View>
 
       <View>
-        <Button title={"Editar"} variant="warn" onPress={() => router.navigate("/home/modal")} />
+        <Button
+          title={"Editar"}
+          variant="warn"
+          onPress={() => {
+            router.navigate("/home/modal");
+            router.setParams({ id: item.id.toString() });
+          }}
+        />
       </View>
     </View>
   </View>
@@ -98,7 +109,7 @@ export default function Medicaments() {
         }
         refreshing={isLoading}
         data={data}
-        keyExtractor={(item) => item.medicament}
+        keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={
           <View style={{ flex: 1 }}>

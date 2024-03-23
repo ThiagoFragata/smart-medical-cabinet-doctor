@@ -27,6 +27,15 @@ const text = {
   default: (value: string | number, style?: StyleProp<TextStyle>) => (
     <TextNative style={[styles.default, style]}>{value}</TextNative>
   ),
+  label: (value: string | number, style?: StyleProp<TextStyle>) => (
+    <TextNative style={[styles.label, style]}>{value}</TextNative>
+  ),
+  textInput: (value: string | number, style?: StyleProp<TextStyle>) => (
+    <TextNative style={[styles.textInput, style]}>{value}</TextNative>
+  ),
+  textError: (value: string | number, style?: StyleProp<TextStyle>) => (
+    <TextNative style={[styles.textError, style]}>{value}</TextNative>
+  ),
 };
 
 interface HeadingProps {
@@ -67,6 +76,21 @@ export const styles = StyleSheet.create({
   },
   default: {
     color: theme.colors.dark,
+    fontSize: scaleSize(14),
+    fontWeight: "400",
+  },
+  label: {
+    color: theme.colors.dark,
+    fontSize: scaleSize(14),
+    fontWeight: "500",
+  },
+  textInput: {
+    color: theme.colors.dark,
+    fontSize: scaleSize(16),
+    fontWeight: "500",
+  },
+  textError: {
+    color: theme.colors.error,
     fontSize: scaleSize(14),
     fontWeight: "400",
   },

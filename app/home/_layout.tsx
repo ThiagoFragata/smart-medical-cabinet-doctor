@@ -1,5 +1,5 @@
 import { Stack } from "expo-router/stack";
-import { Platform, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { theme } from "@/src/theme";
@@ -12,7 +12,6 @@ export default function Layout() {
       <View style={{ paddingTop: top, backgroundColor: theme.colors.light }} />
 
       <Stack
-        initialRouteName="modal"
         screenOptions={{
           headerShown: false,
         }}>
@@ -25,7 +24,7 @@ export default function Layout() {
         <Stack.Screen
           name="modal"
           options={{
-            headerShown: Platform.OS !== "ios",
+            headerShown: false,
             presentation: "modal",
           }}
         />
